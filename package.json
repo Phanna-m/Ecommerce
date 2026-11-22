@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-project",
+  "version": "1.0.0",
+  "description": "Fullstack E-Commerce flow with React, Node.js, Express, and Database ERD",
+  "scripts": {
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build"
+  }
+}
