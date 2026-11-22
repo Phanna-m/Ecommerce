@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 // Initial products matching the PDF reference screenshots
 export const FALLBACK_PRODUCTS = [

@@ -1,6 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { db } from './db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDist = path.join(__dirname, '../frontend/dist');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -183,6 +189,15 @@ app.get('/api/schema', (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
+});
+
+// Serve static files from React frontend build
+app.use(express.static(frontendDist));
+
+// SPA fallback for all frontend routes
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) return next();
+  res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
 app.listen(PORT, () => {
